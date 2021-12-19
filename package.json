@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "module": "commonjs",
   "scripts": {
-    "start": "node src/index.js"
+    "start:local": "cross-env NODE_ENV=development nodemon src/index.js"
   },
   "keywords": [
     "Nodejs",
@@ -16,6 +16,11 @@
   "license": "ISC",
   "dependencies": {
     "dotenv": "^10.0.0",
+    "pg": "^8.7.1",
+    "sequelize": "^6.12.0",
     "telegraf": "^4.5.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
   }
 }

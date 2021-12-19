@@ -10,6 +10,9 @@ const loadEnv = () => {
         case 'dev':
             env = 'dev';
             break;
+        case 'stage':
+            env = 'stage';
+            break;
         case 'prod':
             env = 'prod';
             break;
@@ -17,6 +20,10 @@ const loadEnv = () => {
             env = 'testing_local';
             break;
     }
+
+    dotenv.config({
+        path: path.resolve(process.cwd(), `./configs/environments/common.env`)
+    });
 
     dotenv.config({
         path: path.resolve(process.cwd(), `./configs/environments/${env}.env`)

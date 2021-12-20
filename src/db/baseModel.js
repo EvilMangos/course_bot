@@ -2,8 +2,10 @@ const Models = require("./models");
 const aliases = require("./aliases");
 const relations = require("./relations");
 
+const models = relations(Models);
+
 class baseModel {
-    models = relations(Models);
+    models = models;
     aliases = aliases;
 }
 

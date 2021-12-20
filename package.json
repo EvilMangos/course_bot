@@ -5,7 +5,19 @@
   "main": "src/index.js",
   "module": "commonjs",
   "scripts": {
-    "start": "node src/index.js"
+    "start": "cross-env NODE_ENV=development nodemon src/index.js",
+    "start:dev": "cross-env NODE_ENV=dev node src/index.js",
+    "start:stage": "cross-env NODE_ENV=stage node src/index.js",
+    "start:prod": "cross-env NODE_ENV=prod node src/index.js",
+    "start:testing_local": "cross-env NODE_ENV=testing_local node src/index.js",
+    "db:add_migration": "cross-env NODE_ENV=development sequelize migration:generate --name",
+    "db:migrate": "cross-env NODE_ENV=development sequelize db:migrate",
+    "db:migrate:undo": "cross-env NODE_ENV=development sequelize db:migrate:undo",
+    "db:migrate:undo:all": "cross-env NODE_ENV=development sequelize db:migrate:undo:all",
+    "db:add_seed": "cross-env NODE_ENV=development sequelize seed:generate --name",
+    "db:seed": "cross-env NODE_ENV=development sequelize db:seed:all",
+    "db:seed:undo": "cross-env NODE_ENV=development sequelize db:seed:undo",
+    "db:seed:undo:all": "cross-env NODE_ENV=development sequelize db:seed:undo:all"
   },
   "keywords": [
     "Nodejs",
@@ -16,6 +28,12 @@
   "license": "ISC",
   "dependencies": {
     "dotenv": "^10.0.0",
+    "pg": "^8.7.1",
+    "sequelize": "^6.12.0",
     "telegraf": "^4.5.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15",
+    "sequelize-cli": "^6.3.0"
   }
 }

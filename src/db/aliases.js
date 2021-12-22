@@ -6,7 +6,8 @@ module.exports = {
         lastName: 'last_name',
         course: 'course',
         balance: 'balance',
-        isAdmin: 'is_admin'
+        isAdmin: 'is_admin',
+        telegramId: 'telegram_id'
     },
     transactions: {
         tableName: "users",

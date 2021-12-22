@@ -36,6 +36,11 @@ const usersModel = (sequelize, DataTypes) => {
                 allowNull: false,
                 field: 'is_admin',
                 default: false
+            },
+            telegramId: {
+                type: DataTypes.BIGINT,
+                allowNull: false,
+                field: 'telegram_id'
             }
         },
         {

@@ -29,7 +29,7 @@ const usersModel = (sequelize, DataTypes) => {
                 type: DataTypes.FLOAT,
                 allowNull: false,
                 field: 'balance',
-                default: false
+                default: 0
             },
             isAdmin: {
                 type: DataTypes.BOOLEAN,

@@ -4,6 +4,8 @@ module.exports = {
         id: 'id',
         firstName: 'first_name',
         lastName: 'last_name',
+        email: 'email',
+        telegramId: 'telegramId',
         course: 'course',
         balance: 'balance',
         isAdmin: 'is_admin'

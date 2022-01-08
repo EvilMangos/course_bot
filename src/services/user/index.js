@@ -14,6 +14,7 @@ class User extends baseModel {
     async signUp({
         firstName,
         lastName,
+        email,
         course,
         telegramId
     }) {

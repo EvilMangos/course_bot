@@ -29,6 +29,7 @@ class User extends baseModel {
         return this.models.users.create({
             firstName,
             lastName,
+            email,
             course,
             telegramId
         });

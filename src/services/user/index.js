@@ -12,11 +12,13 @@ class User extends baseModel {
     }
 
     async signUp({
-        firstName,
-        lastName,
+        firstname,
+        lastname,
         email,
         course,
-        telegramId
+        telegramId,
+        balance = 0,
+        isAdmin = false,
     }) {
         const userExist = await this.models.users.findOne({
             where: {
@@ -27,11 +29,13 @@ class User extends baseModel {
         if(userExist) throw new Error('User already exists');
 
         return this.models.users.create({
-            firstName,
-            lastName,
+            firstName: firstname,
+            lastName: lastname,
             email,
             course,
-            telegramId
+            telegramId,
+            balance,
+            isAdmin
         });
 
     }

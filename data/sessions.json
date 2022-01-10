@@ -3,16 +3,7 @@
     {
       "id": "370478309:370478309",
       "data": {
-        "__scenes": {
-          "current": "sign-up",
-          "state": {
-            "telegramId": 370478309,
-            "firstname": "Maksym",
-            "lastname": "Khamets",
-            "email": "jchamets@gmail.com"
-          },
-          "cursor": 4
-        }
+        "__scenes": {}
       }
     }
   ]

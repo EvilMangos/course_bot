@@ -5,8 +5,8 @@ const relations = require("./relations");
 const models = relations(Models);
 
 class baseModel {
-    models = models;
-    aliases = aliases;
+    static models = models;
+    static aliases = aliases;
 }
 
 module.exports = baseModel;

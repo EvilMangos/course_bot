@@ -3,15 +3,15 @@ const baseModel = require('../../db/baseModel');
 class Company extends baseModel {
     Company() {}
 
-    async getInfoAboutUs() {
+    static async getInfoAboutUs() {
         return `Info about us`;
     }
 
-    async getContacts() {
+    static async getContacts() {
         return `Contacts`;
     }
 
-    async getPrice() {
+    static async getPrice() {
         return `Price list`;
     }
 

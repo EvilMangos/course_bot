@@ -15,7 +15,7 @@
     "db:migrate:undo": "cross-env NODE_ENV=development sequelize db:migrate:undo",
     "db:migrate:undo:all": "cross-env NODE_ENV=development sequelize db:migrate:undo:all",
     "db:add_seed": "cross-env NODE_ENV=development sequelize seed:generate --name",
-    "db:seed": "cross-env NODE_ENV=development sequelize db:seed:all",
+    "db:seeds": "cross-env NODE_ENV=development sequelize db:seed:all",
     "db:seed:undo": "cross-env NODE_ENV=development sequelize db:seed:undo",
     "db:seed:undo:all": "cross-env NODE_ENV=development sequelize db:seed:undo:all"
   },

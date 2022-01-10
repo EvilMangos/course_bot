@@ -1,23 +1,29 @@
 require('./loadEnv');
 
-const {Telegraf} = require('telegraf');
+const LocalSession = require('telegraf-session-local');
+
+const BOT = require('./bot');
+BOT.use(new LocalSession({database: 'data/sessions.json'}).middleware());
+const stage = require("./scenes");
+BOT.use(stage.middleware());
 
 const {
     startCommand,
-    helpCommand
+    helpCommand,
+    signUp
 } = require('./commands');
 
-const init = async (BOT_TOKEN) => {
-    const bot = new Telegraf(BOT_TOKEN);
 
+const init = async (bot) => {
     //commands
     bot.start(startCommand);
     bot.help(helpCommand);
+    bot.command('signUp',  signUp);
 
     return bot;
 }
 
-init(process.env.BOT_TOKEN).then(bot => {
+init(BOT).then(bot => {
     bot.launch()
         .then(() => {
             console.log('Bot started');

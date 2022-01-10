@@ -3,15 +3,15 @@ const baseModel = require('../../db/baseModel');
 class User extends baseModel {
     User() {}
 
-    async getAccountInfo(user) {
+    static async getAccountInfo(user) {
         return `Account info`;
     }
 
-    async getPaymentHistory(user) {
+    static async getPaymentHistory(user) {
         return `Payment history`;
     }
 
-    async signUp({
+    static async signUp({
         firstname,
         lastname,
         email,
@@ -37,9 +37,17 @@ class User extends baseModel {
             balance,
             isAdmin
         });
-
     }
 
+    static async auth(telegramId) {
+        const user = this.models.users.findOne({
+            where: {
+                telegramId
+            }
+        });
+
+        return !!user;
+    }
 }
 
 module.exports = User;

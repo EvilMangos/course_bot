@@ -3,23 +3,23 @@ const baseModel = require('../../db/baseModel');
 class Course extends baseModel {
     Course() {}
 
-    static async getCourseProgram(course) {
+    async getCourseProgram(course) {
         return `Course program`;
     }
 
-    static async getCoursesList() {
+    async getCoursesList() {
         return `Courses list`;
     }
 
-    static async getLinkToChat(user) {
+    async getLinkToChat(user) {
         return `Link to chat`;
     }
 
-    static async changeCourse(user, course) {
+    async changeCourse(user, course) {
         return `Course is changed`;
     }
 
-    static async getLessonsSchedule(user) {
+    async getLessonsSchedule(user) {
         return `Lessons schedule`;
     }
 }

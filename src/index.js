@@ -3,7 +3,7 @@ require('./loadEnv');
 const LocalSession = require('telegraf-session-local');
 
 const BOT = require('./bot');
-BOT.use(new LocalSession({database: 'data/sessions.json'}).middleware());
+BOT.use(new LocalSession({database: 'data/data.json'}).middleware());
 const stage = require("./scenes");
 BOT.use(stage.middleware());
 

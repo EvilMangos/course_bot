@@ -1,0 +1,13 @@
+{
+  "testEnvironment": "node",
+  "rootDir": "./",
+  "globalSetup": "./test/unit-tests/unit.globalSetup.js",
+  "testMatch": [
+    "**/unit-tests/**/*.+(unit-test.js)"
+  ],
+  "moduleFileExtensions": ["json", "js"],
+  "globals": {
+    "environment": "unit-testing",
+    "TEST_TYPES": "unit-tests"
+  }
+}

@@ -17,7 +17,11 @@
     "db:add_seed": "cross-env NODE_ENV=development sequelize seed:generate --name",
     "db:seeds": "cross-env NODE_ENV=development sequelize db:seed:all",
     "db:seed:undo": "cross-env NODE_ENV=development sequelize db:seed:undo",
-    "db:seed:undo:all": "cross-env NODE_ENV=development sequelize db:seed:undo:all"
+    "db:seed:undo:all": "cross-env NODE_ENV=development sequelize db:seed:undo:all",
+    "db:migrate:testing_local": "cross-env NODE_ENV=testing_local sequelize db:migrate",
+    "db:migrate:undo:testing_local": "cross-env NODE_ENV=testing_local sequelize db:migrate:undo:all",
+    "db:truncate:testing_local": "cross-env NODE_ENV=testing_local node ./src/db/utils/truncate.js",
+    "unit:tests": "cross-env NODE_ENV=testing_local jest --detectOpenHandles --config jest-unit-tests.json"
   },
   "keywords": [
     "Nodejs",
@@ -35,6 +39,7 @@
     "telegraf-session-local": "^2.1.0"
   },
   "devDependencies": {
+    "jest": "^27.4.7",
     "nodemon": "^2.0.15",
     "sequelize-cli": "^6.3.0"
   }

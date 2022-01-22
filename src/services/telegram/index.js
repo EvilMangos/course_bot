@@ -5,11 +5,11 @@ const data = require('./data')
 class Telegram extends baseModel {
     Telegram() {}
 
-    static async startCommand(ctx) {
+    async startCommand(ctx) {
         return ctx.reply('Start Command');
     }
 
-    static async helpCommand(ctx) {
+    async helpCommand(ctx) {
         return ctx.reply(data.helpInfo);
     }
 }

@@ -1,50 +1,62 @@
 const baseModel = require('../../db/baseModel');
 
 class User extends baseModel {
-    User() {}
+    User() {
+    }
 
-    static async getAccountInfo(user) {
+    async getAccountInfo(user) {
         return `Account info`;
     }
 
-    static async getPaymentHistory(user) {
+    async getPaymentHistory(user) {
         return `Payment history`;
     }
 
-    static async signUp({
-        firstname,
-        lastname,
-        email,
-        course,
-        telegramId,
-        balance = 0,
-        isAdmin = false,
-    }) {
+    async signUp({
+                     firstname,
+                     lastname,
+                     email,
+                     course,
+                     telegramId,
+                     balance = 0,
+                     isAdmin = false,
+                 }) {
         const userExist = await this.models.users.findOne({
             where: {
                 telegramId
             }
         });
 
-        if(userExist) throw new Error('User already exists');
+        if (userExist) throw new Error('User already exists');
 
-        return this.models.users.create({
-            firstName: firstname,
-            lastName: lastname,
-            email,
-            course,
-            telegramId,
-            balance,
-            isAdmin
-        });
+        let user;
+        try {
+            user = await this.models.users.create({
+                firstName: firstname,
+                lastName: lastname,
+                email,
+                course,
+                telegramId,
+                balance,
+                isAdmin
+            });
+        } catch (err) {
+            throw new Error(err);
+        }
+
+        return user.get({plain: true});
     }
 
-    static async auth(telegramId) {
-        const user = this.models.users.findOne({
+    async auth(telegramId) {
+        const user = await this.models.users.findOne({
             where: {
                 telegramId
-            }
+            },
+            raw: true,
+            nest: true
         });
+
+        // const result = await user.get({plain: true});
 
         return !!user;
     }

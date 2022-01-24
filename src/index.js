@@ -10,7 +10,8 @@ BOT.use(stage.middleware());
 const {
     startCommand,
     helpCommand,
-    signUp
+    signUp,
+    changeCourse
 } = require('./commands');
 
 
@@ -18,7 +19,9 @@ const init = async (bot) => {
     //commands
     bot.start(startCommand);
     bot.help(helpCommand);
-    bot.command('signUp', signUp);
+
+    bot.hears('Sign Up', signUp);
+    bot.hears('Change course', changeCourse);
 
     return bot;
 }

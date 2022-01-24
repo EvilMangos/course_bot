@@ -18,7 +18,7 @@ const init = async (bot) => {
     //commands
     bot.start(startCommand);
     bot.help(helpCommand);
-    bot.command('signUp',  signUp);
+    bot.command('signUp', signUp);
 
     return bot;
 }

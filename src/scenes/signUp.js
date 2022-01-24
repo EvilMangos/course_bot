@@ -1,6 +1,7 @@
 const {Scenes, Markup} = require('telegraf');
 const authValidator = require('../utils/authValidation');
 const User = require('../services/user/index');
+const setKeyboard = require('../utils/setKeyboard');
 
 module.exports = new Scenes.WizardScene(
     'sign-up',
@@ -50,6 +51,7 @@ module.exports = new Scenes.WizardScene(
         ctx.wizard.state.course = ctx.callbackQuery.data;
         const user = new User();
         await user.signUp(ctx.wizard.state);
+        await setKeyboard(ctx);
         await ctx.reply('Thanks for registration');
         return ctx.scene.leave();
     }

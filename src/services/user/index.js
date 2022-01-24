@@ -56,9 +56,9 @@ class User extends baseModel {
             nest: true
         });
 
-        // const result = await user.get({plain: true});
-
-        return !!user;
+        if (user && user.isAdmin) return 'admin';
+        if (user) return 'user';
+        return 'guest';
     }
 }
 

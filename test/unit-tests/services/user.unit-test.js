@@ -46,13 +46,13 @@ describe('auth', () => {
         await users.signUp(createUser);
         const result = await users.auth(createUser.telegramId);
 
-        expect(result).toBe(true);
+        expect(result).toBe("user");
     });
 
     it('fail', async () => {
         const users = new User();
         const result = await users.auth(0);
 
-        expect(result).toBe(false);
+        expect(result).toBe("guest");
     })
 });

@@ -25,7 +25,7 @@ const usersModel = (sequelize, DataTypes) => {
                 field: 'email'
             },
             telegramId: {
-                type: DataTypes.INTEGER,
+                type: DataTypes.BIGINT,
                 allowNull: false,
                 field: 'telegram_id'
             },

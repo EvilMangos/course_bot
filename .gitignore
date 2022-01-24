@@ -4,5 +4,5 @@ node_modules
 #webstorm
 .idea
 
-#sessions
-data/sessions.json
+#data
+data

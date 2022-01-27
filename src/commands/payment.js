@@ -3,6 +3,9 @@ const User = require('../services/user/index');
 module.exports = async (ctx) => {
     const userService = new User();
     const user = await userService.getById(ctx.chat.id);
+    const history = await userService.getHistory(user.id);
+    if (history.length > 2) return ctx.reply('The course is fully paid');
+
     const invoice = {
         chat_id: ctx.chat.id,
         title: 'Course payment',

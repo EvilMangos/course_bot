@@ -1,4 +1,3 @@
-const BaseModel = require('../db/baseModel');
 const User = require('../services/user/index');
 
 module.exports = async (ctx) => {
@@ -14,7 +13,7 @@ module.exports = async (ctx) => {
         provider_token: process.env.LIQPAY_KEY,
         start_parameter: 'start',
         currency: 'UAH',
-        prices: JSON.stringify([{label: 'Course', amount: 280000}])
+        prices: JSON.stringify([{label: 'Course price', amount: 280000}])
     };
     return ctx.replyWithInvoice(invoice);
 }

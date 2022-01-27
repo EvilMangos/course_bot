@@ -12,7 +12,8 @@ const {
     helpCommand,
     signUp,
     changeCourse,
-    payment
+    payment,
+    getHistory
 } = require('./commands');
 
 const {
@@ -27,6 +28,7 @@ const init = async (bot) => {
     bot.hears('Sign Up', signUp);
     bot.hears('Change course', changeCourse);
     bot.hears('Payment', payment);
+    bot.hears('History', getHistory);
 
     bot.on('pre_checkout_query', (ctx) => ctx.answerPreCheckoutQuery(true));
     bot.on('successful_payment', successfulPayment);

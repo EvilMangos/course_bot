@@ -104,6 +104,16 @@ class User extends baseModel {
             userId,
             amount,
             payDate
+        });
+    }
+
+    async getHistory(id) {
+        return this.models.transactions.findAll({
+            where: {
+                userId: id
+            },
+            raw: true,
+            nest: true
         })
     }
 }

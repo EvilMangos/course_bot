@@ -60,6 +60,40 @@ class User extends baseModel {
         if (user) return 'user';
         return 'guest';
     }
+
+    async getById(id) {
+        return this.models.users.findOne({
+            where: {
+                telegramId: id
+            },
+            raw: true,
+            nest: true
+        })
+    }
+
+    async update({
+                     firstName,
+                     lastName,
+                     email,
+                     telegramId,
+                     course,
+                     balance,
+                 }) {
+
+        return this.models.users.update({
+            firstName,
+            lastName,
+            email,
+            course,
+            balance
+        }, {
+            where: {
+                telegramId
+            },
+            raw: true,
+            nest: true
+        });
+    }
 }
 
 module.exports = User;

@@ -94,6 +94,18 @@ class User extends baseModel {
             nest: true
         });
     }
+
+    async createTransaction({
+                                userId,
+                                amount,
+                                payDate
+                            }) {
+        return this.models.transactions.create({
+            userId,
+            amount,
+            payDate
+        })
+    }
 }
 
 module.exports = User;

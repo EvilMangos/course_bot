@@ -14,6 +14,10 @@ module.exports = new Scenes.WizardScene(
         return ctx.wizard.next();
     },
     async (ctx) => {
+        if (!ctx.callbackQuery) {
+            await ctx.reply('Changing canceled');
+            return ctx.scene.leave();
+        }
         const baseModel = new BaseModel();
         const user = await baseModel.models.users.findOne({
             where: {

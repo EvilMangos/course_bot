@@ -32,9 +32,6 @@
         "text": "Contacts"
       },
       {
-        "text": "Price"
-      },
-      {
         "text": "Courses"
       },
       {
@@ -58,7 +55,7 @@
         "text": "Chat"
       },
       {
-        "text": "Schedule"
+        "text": "Lessons"
       }
     ]
   ],
@@ -88,7 +85,7 @@
         "text": "Students"
       },
       {
-        "text": "Schedule"
+        "text": "Lessons"
       }
     ]
   ]

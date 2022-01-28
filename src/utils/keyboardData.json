@@ -1,0 +1,92 @@
+{
+  "guest": [
+    [
+      {
+        "text": "Sign Up"
+      },
+      {
+        "text": "About Us"
+      },
+      {
+        "text": "Contacts"
+      }
+    ],
+    [
+      {
+        "text": "Price"
+      },
+      {
+        "text": "Courses"
+      },
+      {
+        "text": "Course program"
+      }
+    ]
+  ],
+  "user": [
+    [
+      {
+        "text": "About us"
+      },
+      {
+        "text": "Contacts"
+      },
+      {
+        "text": "Courses"
+      },
+      {
+        "text": "Payment"
+      },
+      {
+        "text": "History"
+      }
+    ],
+    [
+      {
+        "text": "Account"
+      },
+      {
+        "text": "Course program"
+      },
+      {
+        "text": "Change course"
+      },
+      {
+        "text": "Chat"
+      },
+      {
+        "text": "Lessons"
+      }
+    ]
+  ],
+  "admin": [
+    [
+      {
+        "text": "About us"
+      },
+      {
+        "text": "Contacts"
+      },
+      {
+        "text": "Price"
+      },
+      {
+        "text": "Course Program"
+      }
+    ],
+    [
+      {
+        "text": "Chat"
+      },
+      {
+        "text": "Courses"
+      },
+      {
+        "text": "Students"
+      },
+      {
+        "text": "Lessons"
+      }
+    ]
+  ]
+}

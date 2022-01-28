@@ -19,6 +19,16 @@ const usersModel = (sequelize, DataTypes) => {
                 allowNull: false,
                 field: 'last_name'
             },
+            email: {
+                type: DataTypes.STRING,
+                allowNull: false,
+                field: 'email'
+            },
+            telegramId: {
+                type: DataTypes.BIGINT,
+                allowNull: false,
+                field: 'telegram_id'
+            },
             course: {
                 type: DataTypes.STRING,
                 allowNull: false,
@@ -29,7 +39,7 @@ const usersModel = (sequelize, DataTypes) => {
                 type: DataTypes.FLOAT,
                 allowNull: false,
                 field: 'balance',
-                default: false
+                default: 0
             },
             isAdmin: {
                 type: DataTypes.BOOLEAN,

@@ -22,7 +22,7 @@ const transactionsModel = (sequelize, DataTypes) => {
                 type: DataTypes.FLOAT,
                 allowNull: false,
                 field: 'amount',
-                default: false
+                default: 0
             },
             payDate: {
                 type: DataTypes.DATE,

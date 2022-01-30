@@ -18,7 +18,7 @@ class User extends baseModel {
                      email,
                      course,
                      telegramId,
-                     balance = 0,
+                     balance = -2800,
                      isAdmin = false,
                  }) {
         const userExist = await this.models.users.findOne({
@@ -111,6 +111,16 @@ class User extends baseModel {
         return this.models.transactions.findAll({
             where: {
                 userId: id
+            },
+            raw: true,
+            nest: true
+        })
+    }
+
+    async getByCourse(course) {
+        return this.models.users.findAll({
+            where: {
+                course
             },
             raw: true,
             nest: true

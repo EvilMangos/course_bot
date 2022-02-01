@@ -1,3 +1,8 @@
+const User = require('../services/user/index')
+
 module.exports = async (ctx) => {
-    return ctx.reply('#');
+    const userService = new User();
+    const user = await userService.getById(ctx.chat.id);
+    const account = await userService.getAccount(user);
+    return ctx.replyWithHTML(account);
 }

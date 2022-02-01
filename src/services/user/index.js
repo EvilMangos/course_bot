@@ -126,6 +126,16 @@ class User extends baseModel {
             nest: true
         })
     }
+
+    async getAccount(user) {
+        const data = `
+<b>Name:</b> ${user.lastName} ${user.firstName}
+<b>Email:</b> ${user.email}
+<b>Course:</b> ${user.course === process.env.NODE_COURSE ? 'Node.js' : 'Data Engineering'}
+<b>Balance:</b> ${user.balance}
+        `
+        return data;
+    }
 }
 
 module.exports = User;

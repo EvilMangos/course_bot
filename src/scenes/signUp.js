@@ -33,9 +33,9 @@ module.exports = new Scenes.WizardScene(
     async (ctx) => {
         if (ctx.message.text === 'Cancel') return defaultKeyboard(ctx)
         ctx.wizard.state.telegramId = ctx.message.chat.id;
-        if (!ctx.wizard.state.firstname && authValidator.name(ctx.message.text)) {
-            ctx.wizard.state.firstname = ctx.message.text;
-        } else if (!ctx.wizard.state.firstname) {
+        if (!ctx.wizard.state.firstName && authValidator.name(ctx.message.text)) {
+            ctx.wizard.state.firstName = ctx.message.text;
+        } else if (!ctx.wizard.state.firstName) {
             ctx.wizard.back();
             return ctx.wizard.steps[ctx.wizard.cursor](ctx);
         }
@@ -44,9 +44,9 @@ module.exports = new Scenes.WizardScene(
     },
     async (ctx) => {
         if (ctx.message.text === 'Cancel') return defaultKeyboard(ctx)
-        if (!ctx.wizard.state.lastname && authValidator.name(ctx.message.text)) {
-            ctx.wizard.state.lastname = ctx.message.text;
-        } else if (!ctx.wizard.state.lastname) {
+        if (!ctx.wizard.state.lastName && authValidator.name(ctx.message.text)) {
+            ctx.wizard.state.lastName = ctx.message.text;
+        } else if (!ctx.wizard.state.lastName) {
             ctx.wizard.back();
             return ctx.wizard.steps[ctx.wizard.cursor](ctx);
         }
@@ -80,7 +80,7 @@ module.exports = new Scenes.WizardScene(
         ctx.wizard.state.course = ctx.callbackQuery.data;
         const user = new User();
         await user.signUp(ctx.wizard.state);
-        await setKeyboard(ctx);
+        await setKeyboard(ctx, `Hello ${ctx.wizard.state.lastName} ${ctx.wizard.state.firstName}`);
         await ctx.reply('Thanks for registration');
         return ctx.scene.leave();
     }

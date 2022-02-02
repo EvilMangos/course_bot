@@ -1,4 +1,5 @@
 const User = require('../services/user/index');
+const checkAccess = require('../utils/checkAccess');
 
 const formatStudentsList = (students) => {
     const payedCount = students.filter(student => student.balance >= 0).length;
@@ -10,6 +11,8 @@ const formatStudentsList = (students) => {
 }
 
 module.exports = async (ctx) => {
+    const isAccess = await checkAccess(ctx, [process.env.ADMIN])
+    if (!isAccess) return ctx.reply('Access denied');
     const userService = new User();
     const admin = await userService.getById(ctx.chat.id);
     const studentsList = await userService.getByCourse(admin.course);

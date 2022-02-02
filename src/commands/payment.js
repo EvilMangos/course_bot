@@ -1,6 +1,9 @@
 const User = require('../services/user/index');
+const checkAccess = require('../utils/checkAccess');
 
 module.exports = async (ctx) => {
+    const isAccess = await checkAccess(ctx, [process.env.USER])
+    if (!isAccess) return ctx.reply('Access denied');
     const userService = new User();
     const user = await userService.getById(ctx.chat.id);
     const history = await userService.getHistory(user.id);
@@ -16,7 +19,7 @@ module.exports = async (ctx) => {
         provider_token: process.env.LIQPAY_KEY,
         start_parameter: 'start',
         currency: 'UAH',
-        prices: JSON.stringify([{label: 'Course price', amount: 280000}])
+        prices: JSON.stringify([{label: 'Course price', amount: process.env.PRICE * 100}])
     };
     return ctx.replyWithInvoice(invoice);
 }

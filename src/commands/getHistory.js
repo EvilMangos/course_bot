@@ -1,4 +1,5 @@
 const User = require('../services/user/index');
+const checkAccess = require('../utils/checkAccess');
 
 const twoNumberFormat = (time) => {
     return time.toString().length < 2 ? '0' + time.toString() : time;
@@ -27,6 +28,8 @@ const replyFormat = (history) => {
 }
 
 module.exports = async (ctx) => {
+    const isAccess = await checkAccess(ctx, [process.env.USER])
+    if (!isAccess) return ctx.reply('Access denied');
     const userService = new User();
     const user = await userService.getById(ctx.chat.id);
     const history = await userService.getHistory(user.id);

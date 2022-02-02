@@ -13,8 +13,8 @@ class User extends baseModel {
     }
 
     async signUp({
-                     firstname,
-                     lastname,
+                     firstName,
+                     lastName,
                      email,
                      course,
                      telegramId,
@@ -32,8 +32,8 @@ class User extends baseModel {
         let user;
         try {
             user = await this.models.users.create({
-                firstName: firstname,
-                lastName: lastname,
+                firstName,
+                lastName,
                 email,
                 course,
                 telegramId,
@@ -125,6 +125,20 @@ class User extends baseModel {
             raw: true,
             nest: true
         })
+    }
+
+    async edit(userData) {
+        const user = await this.models.users.findOne({
+            where: { telegramId: userData.telegramId },
+            raw: true,
+            nest: true
+        });
+
+        if (!user) throw new Error("User doesn't exist");
+        delete userData.telegramId;
+        return this.models.users.update(userData, {
+            where: { telegramId: user.telegramId }
+        });
     }
 }
 

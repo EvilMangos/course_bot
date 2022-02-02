@@ -50,6 +50,8 @@ const init = async (bot) => {
 
     bot.on('pre_checkout_query', (ctx) => ctx.answerPreCheckoutQuery(true));
     bot.on('successful_payment', successfulPayment);
+    bot.on('edit name');
+    bot.on('edit email');
 
     return bot;
 }

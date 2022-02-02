@@ -56,9 +56,9 @@ class User extends baseModel {
             nest: true
         });
 
-        if (user && user.isAdmin) return 'admin';
-        if (user) return 'user';
-        return 'guest';
+        if (user && user.isAdmin) return process.env.ADMIN;
+        if (user) return process.env.USER;
+        return process.env.GUEST;
     }
 
     async getById(id) {

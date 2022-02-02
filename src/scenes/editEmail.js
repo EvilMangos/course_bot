@@ -15,9 +15,9 @@ const defaultKeyboard = async (ctx) => {
 }
 
 module.exports = new Scenes.WizardScene(
-    'edit-name',
+    'edit-email',
     async (ctx) => {
-        await ctx.telegram.sendMessage(ctx.chat.id, 'Edit name', {
+        await ctx.telegram.sendMessage(ctx.chat.id, 'Change email', {
             reply_markup: {
                 resize_keyboard: true,
                 keyboard: [
@@ -27,26 +27,15 @@ module.exports = new Scenes.WizardScene(
                 ]
             }
         });
-        await ctx.reply('Enter new first name:');
-        return ctx.wizard.next();
-    },
-    async (ctx) => {
-        if (ctx.message.text === 'Cancel') return defaultKeyboard(ctx)
-        ctx.wizard.state.telegramId = ctx.message.chat.id;
-        if (!ctx.wizard.state.firstName && authValidator.name(ctx.message.text)) {
-            ctx.wizard.state.firstName = ctx.message.text;
-        } else if (!ctx.wizard.state.firstName) {
-            ctx.wizard.back();
-            return ctx.wizard.steps[ctx.wizard.cursor](ctx);
-        }
-        await ctx.reply('Enter new last name:');
+        await ctx.reply('Enter new email:');
         return ctx.wizard.next();
     },
     async (ctx) => {
         if (ctx.message && ctx.message.text === 'Cancel') return defaultKeyboard(ctx)
-        if (!ctx.wizard.state.lastName && authValidator.name(ctx.message.text)) {
-            ctx.wizard.state.lastName = ctx.message.text;
-        } else if (!ctx.wizard.state.lastName) {
+        if (!ctx.wizard.state.email && authValidator.name(ctx.message.text)) {
+            ctx.wizard.state.telegramId = ctx.chat.id;
+            ctx.wizard.state.email = ctx.message.text;
+        } else if (!ctx.wizard.state.email) {
             ctx.wizard.back();
             return ctx.wizard.steps[ctx.wizard.cursor](ctx);
         }

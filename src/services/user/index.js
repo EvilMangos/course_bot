@@ -139,7 +139,7 @@ class User extends baseModel {
 
     async edit(userData) {
         const user = await this.models.users.findOne({
-            where: { telegramId: userData.telegramId },
+            where: {telegramId: userData.telegramId},
             raw: true,
             nest: true
         });
@@ -147,7 +147,7 @@ class User extends baseModel {
         if (!user) throw new Error("User doesn't exist");
         delete userData.telegramId;
         return this.models.users.update(userData, {
-            where: { telegramId: user.telegramId }
+            where: {telegramId: user.telegramId}
         });
     }
 }

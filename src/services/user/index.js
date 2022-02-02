@@ -120,11 +120,21 @@ class User extends baseModel {
     async getByCourse(course) {
         return this.models.users.findAll({
             where: {
-                course
+                course,
+                isAdmin: false
             },
             raw: true,
             nest: true
         })
+    }
+
+    async getAccount(user) {
+        return `
+<b>Name:</b> ${user.lastName} ${user.firstName}
+<b>Email:</b> ${user.email}
+<b>Course:</b> ${user.course === process.env.NODE_COURSE ? 'Node.js' : 'Data Engineering'}
+<b>Balance:</b> ${user.balance} UAH
+        `
     }
 
     async edit(userData) {

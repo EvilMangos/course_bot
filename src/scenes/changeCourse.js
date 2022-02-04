@@ -33,7 +33,7 @@ module.exports = new Scenes.WizardScene(
             }
         })
 
-        await ctx.reply(`Now you course is - ${
+        await ctx.reply(`Now your course is - ${
             ctx.callbackQuery.data === process.env.NODE_COURSE? process.env.NODE_COURSE_FORMAT: process.env.DATA_COURSE_FORMAT 
         }`);
         return ctx.scene.leave();

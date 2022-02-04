@@ -6,7 +6,7 @@ const formatReply = (lessonsList) => {
     let result = `<b>Lessons schedule</b>\n\n`;
     const date = new Date();
     lessonsList.filter((lesson) => lesson.startedAt > date);
-    const max = lessonsList.length > 5 ? lessonsList.length : 5;
+    const max = lessonsList.length > 6 ? 6 : lessonsList.length;
     for (let i = 0; i < max; i++) {
         result += `
 <b>№</b> ${lessonsList[i].number}

@@ -12,7 +12,7 @@ module.exports = async (ctx) => {
     const invoice = {
         chat_id: ctx.chat.id,
         title: 'Course payment',
-        description: `Your balance: ${user.balance}`,
+        description: `Your balance: ${user.balance} UAH`,
         payload: {
             unique_id: `${ctx.chat.id}_${Number(new Date())}`
         },

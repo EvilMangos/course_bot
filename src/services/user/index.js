@@ -132,7 +132,7 @@ class User extends baseModel {
         return `
 <b>Name:</b> ${user.lastName} ${user.firstName}
 <b>Email:</b> ${user.email}
-<b>Course:</b> ${user.course === process.env.NODE_COURSE ? 'Node.js' : 'Data Engineering'}
+<b>Course:</b> ${user.course === process.env.NODE_COURSE ? process.env.NODE_COURSE_FORMAT : process.env.DATA_COURSE_FORMAT}
 <b>Balance:</b> ${user.balance} UAH
         `
     }

@@ -11,9 +11,9 @@ const admins = {
     Alex: {
         firstName: "Alex",
         lastName: "Kharchenko",
-        email: "dog@gmail.com",
-        course: "dataengineeering",
-        telegramId: 1010,
+        email: "alexeyspace3@gmail.com",
+        course: "dataengineering",
+        telegramId: 440762096,
     }
 }
 

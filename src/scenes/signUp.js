@@ -64,8 +64,8 @@ module.exports = new Scenes.WizardScene(
         await ctx.reply(
             'Choose a course',
             Markup.inlineKeyboard([
-                Markup.button.callback('Node.js', process.env.NODE_COURSE),
-                Markup.button.callback('Data Engineering', process.env.DATA_COURSE)
+                Markup.button.callback(process.env.NODE_COURSE_FORMAT, process.env.NODE_COURSE),
+                Markup.button.callback(process.env.DATA_COURSE_FORMAT, process.env.DATA_COURSE)
             ]).oneTime()
         );
 

@@ -20,8 +20,7 @@ module.exports = {
     course: {
       type: DataTypes.STRING,
       allowNull: false,
-      field: 'course',
-      default: 0
+      field: 'course'
     },
     balance: {
       type: DataTypes.FLOAT,

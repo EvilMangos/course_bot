@@ -1,11 +1,13 @@
 const User = require('../services/user/index');
-const checkAccess = require("../utils/checkAccess");
 
 module.exports = async (ctx) => {
-    const isAccess = await checkAccess(ctx, [process.env.USER, process.env.ADMIN]);
-    if (!isAccess) return ctx.reply('Access denied');
     const userService = new User();
     const user = await userService.getById(ctx.chat.id);
-    const pathToProgram = `data/programs/${user.course}.png`;
-    return ctx.replyWithPhoto({ source: pathToProgram });
+    if(user) {
+        const pathToProgram = `data/programs/${user.course}.png`;
+        return ctx.replyWithPhoto({ source: pathToProgram });
+    } else {
+        await ctx.replyWithPhoto({ source: `data/programs/${process.env.NODE_COURSE}.png` }, { caption: process.env.NODE_COURSE_FORMAT });
+        return ctx.replyWithPhoto({ source: `data/programs/${process.env.DATA_COURSE}.png` }, { caption: process.env.DATA_COURSE_FORMAT });
+    }
 }

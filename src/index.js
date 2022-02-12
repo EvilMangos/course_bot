@@ -2,6 +2,8 @@ require('./loadEnv');
 
 const LocalSession = require('telegraf-session-local');
 
+const PORT = process.env.PORT || 5000;
+
 const BOT = require('./bot');
 BOT.use(new LocalSession({database: 'data/data.json'}).middleware());
 const stage = require("./scenes");
@@ -58,12 +60,8 @@ const init = async (bot) => {
     return bot;
 }
 
-init(BOT).then(bot => {
-    bot.launch()
-        .then(() => {
-            console.log('Bot started');
-        })
-        .catch(err => {
-            console.log(err);
-        });
+init(BOT).then(async bot => {
+    await bot.telegram.setWebhook(`${process.env.URL}/bot${process.env.BOT_TOKEN}`);
+    bot.startWebhook(`/bot${process.env.BOT_TOKEN}`, null, PORT);
+    console.log('Started with webhook');
 });

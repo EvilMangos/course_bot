@@ -42,5 +42,8 @@
     "jest": "^27.4.7",
     "nodemon": "^2.0.15",
     "sequelize-cli": "^6.3.0"
+  },
+  "engines": {
+    "node": "17.0.1"
   }
 }

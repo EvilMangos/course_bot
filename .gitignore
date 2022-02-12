@@ -4,9 +4,6 @@ node_modules
 #webstorm
 .idea
 
-#data
-data
-
 #npm
 package-lock.json
 

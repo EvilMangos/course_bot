@@ -9,3 +9,6 @@ data
 
 #npm
 package-lock.json
+
+#configs
+configs

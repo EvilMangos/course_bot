@@ -1,27 +1,30 @@
 const baseModel = require('../../db/baseModel');
 
 class Course extends baseModel {
-    Course() {}
-
-    async getCourseProgram(course) {
-        return `Course program`;
+    Course() {
     }
 
-    async getCoursesList() {
-        return `Courses list`;
-    }
+    async createLesson({
+                           course,
+                           startedAt,
+                           theme,
+                           number
+                       }) {
+        return this.models.lessons.create({
+            course,
+            startedAt,
+            theme,
+            number
+        });
+    };
 
-    async getLinkToChat(user) {
-        return `Link to chat`;
-    }
-
-    async changeCourse(user, course) {
-        return `Course is changed`;
-    }
-
-    async getLessonsSchedule(user) {
-        return `Lessons schedule`;
-    }
+    async getLessons(course) {
+        return this.models.lessons.findAll({
+            where: {
+                course
+            }
+        });
+    };
 }
 
 module.exports = Course;

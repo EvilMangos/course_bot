@@ -13,12 +13,12 @@ class User extends baseModel {
     }
 
     async signUp({
-                     firstname,
-                     lastname,
+                     firstName,
+                     lastName,
                      email,
                      course,
                      telegramId,
-                     balance = 0,
+                     balance = -2800,
                      isAdmin = false,
                  }) {
         const userExist = await this.models.users.findOne({
@@ -32,8 +32,8 @@ class User extends baseModel {
         let user;
         try {
             user = await this.models.users.create({
-                firstName: firstname,
-                lastName: lastname,
+                firstName,
+                lastName,
                 email,
                 course,
                 telegramId,
@@ -56,9 +56,9 @@ class User extends baseModel {
             nest: true
         });
 
-        if (user && user.isAdmin) return 'admin';
-        if (user) return 'user';
-        return 'guest';
+        if (user && user.isAdmin) return process.env.ADMIN;
+        if (user) return process.env.USER;
+        return process.env.GUEST;
     }
 
     async getById(id) {
@@ -115,6 +115,40 @@ class User extends baseModel {
             raw: true,
             nest: true
         })
+    }
+
+    async getByCourse(course) {
+        return this.models.users.findAll({
+            where: {
+                course,
+                isAdmin: false
+            },
+            raw: true,
+            nest: true
+        })
+    }
+
+    async getAccount(user) {
+        return `
+<b>Name:</b> ${user.lastName} ${user.firstName}
+<b>Email:</b> ${user.email}
+<b>Course:</b> ${user.course === process.env.NODE_COURSE ? process.env.NODE_COURSE_FORMAT : process.env.DATA_COURSE_FORMAT}
+<b>Balance:</b> ${user.balance} UAH
+        `
+    }
+
+    async edit(userData) {
+        const user = await this.models.users.findOne({
+            where: {telegramId: userData.telegramId},
+            raw: true,
+            nest: true
+        });
+
+        if (!user) throw new Error("User doesn't exist");
+        delete userData.telegramId;
+        return this.models.users.update(userData, {
+            where: {telegramId: user.telegramId}
+        });
     }
 }
 

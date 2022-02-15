@@ -1,5 +1,3 @@
-require('../../loadEnv');
-
 const BaseModel = require('../baseModel');
 
 (async () => {

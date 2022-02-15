@@ -1,5 +1,3 @@
-require('../loadEnv');
-
 const confPrototype = {
     host: process.env.HOST,
     port: process.env.PORT,

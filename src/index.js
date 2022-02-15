@@ -1,5 +1,3 @@
-require('./loadEnv');
-
 const LocalSession = require('telegraf-session-local');
 
 const PORT = process.env.PORT || 5000;

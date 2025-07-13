@@ -1,3 +1,6 @@
+const dotenv = require('dotenv');
+const path = require('path');
+
 const loadEnv = () => {
     let env = '';
     switch (process.env.NODE_ENV) {

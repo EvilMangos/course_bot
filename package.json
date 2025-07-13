@@ -5,31 +5,30 @@
   "main": "src/index.js",
   "module": "commonjs",
   "scripts": {
-    "start": "cross-env NODE_ENV=development nodemon src/index.js",
-    "start:dev": "cross-env NODE_ENV=dev node src/index.js",
-    "start:stage": "cross-env NODE_ENV=stage node src/index.js",
+    "start": "NODE_ENV=development nodemon src/index.js",
+    "start:dev": "NODE_ENV=dev node src/index.js",
+    "start:stage": "NODE_ENV=stage node src/index.js",
     "start:prod": "node src/index.js",
-    "start:testing_local": "cross-env NODE_ENV=testing_local node src/index.js",
-    "db:add_migration": "cross-env NODE_ENV=development sequelize migration:generate --name",
+    "start:testing_local": "NODE_ENV=testing_local node src/index.js",
+    "db:add_migration": "NODE_ENV=development sequelize migration:generate --name",
     "db:migrate": "NODE_ENV=development sequelize db:migrate",
-    "db:migrate:undo": "cross-env NODE_ENV=development sequelize db:migrate:undo",
-    "db:migrate:undo:all": "cross-env NODE_ENV=development sequelize db:migrate:undo:all",
-    "db:add_seed": "cross-env NODE_ENV=development sequelize seed:generate --name",
+    "db:migrate:undo": "NODE_ENV=development sequelize db:migrate:undo",
+    "db:migrate:undo:all": "NODE_ENV=development sequelize db:migrate:undo:all",
+    "db:add_seed": "NODE_ENV=development sequelize seed:generate --name",
     "db:seeds": "NODE_ENV=development sequelize db:seed:all",
-    "db:seed:undo": "cross-env NODE_ENV=development sequelize db:seed:undo",
-    "db:seed:undo:all": "cross-env NODE_ENV=development sequelize db:seed:undo:all",
-    "db:migrate:testing_local": "cross-env NODE_ENV=testing_local sequelize db:migrate",
-    "db:migrate:undo:testing_local": "cross-env NODE_ENV=testing_local sequelize db:migrate:undo:all",
-    "db:truncate:testing_local": "cross-env NODE_ENV=testing_local node ./src/db/utils/truncate.js",
-    "unit:tests": "cross-env NODE_ENV=testing_local jest --detectOpenHandles --config jest-unit-tests.json"
+    "db:seed:undo": "NODE_ENV=development sequelize db:seed:undo",
+    "db:seed:undo:all": "NODE_ENV=development sequelize db:seed:undo:all",
+    "db:migrate:testing_local": "NODE_ENV=testing_local sequelize db:migrate",
+    "db:migrate:undo:testing_local": "NODE_ENV=testing_local sequelize db:migrate:undo:all",
+    "db:truncate:testing_local": "NODE_ENV=testing_local node ./src/db/utils/truncate.js",
+    "unit:tests": "NODE_ENV=testing_local jest --detectOpenHandles --config jest-unit-tests.json"
   },
   "keywords": [
     "Nodejs",
     "Sequelize",
     "Telegraf"
   ],
-  "author": "EvilMango",
-  "license": "ISC",
+  "author": "",
   "dependencies": {
     "dotenv": "^10.0.0",
     "email-validator": "^2.0.4",
@@ -42,8 +41,5 @@
     "jest": "^27.4.7",
     "nodemon": "^2.0.15",
     "sequelize-cli": "^6.3.0"
-  },
-  "engines": {
-    "node": "17.0.1"
   }
 }

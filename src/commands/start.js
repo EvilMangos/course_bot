@@ -8,7 +8,7 @@ module.exports = async (ctx) => {
     const user = await userService.getById(ctx.chat.id);
     const role = await userService.auth(user ? user.telegramId : ctx.chat.id);
     let text = 'Hello guest';
-    if (role !== process.env.GUEST) text = `Hello ${user.lastName} ${user.firstName}`;
+    if (role !== process.env.GUEST_ROLE) text = `Hello ${user.lastName} ${user.firstName}`;
     await setKeyboard(ctx, text);
     return telegram.startCommand(ctx);
 }

@@ -19,7 +19,7 @@ const formatReply = (lessonsList) => {
 };
 
 module.exports = async (ctx) => {
-    const isAccess = await checkAccess(ctx, [process.env.USER, process.env.ADMIN])
+    const isAccess = await checkAccess(ctx, [process.env.USER_ROLE, process.env.ADMIN_ROLE])
     if (!isAccess) return ctx.reply('Access denied');
     const userService = new User();
     const user = await userService.getById(ctx.chat.id);

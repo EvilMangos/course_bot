@@ -28,7 +28,7 @@ const replyFormat = (history) => {
 }
 
 module.exports = async (ctx) => {
-    const isAccess = await checkAccess(ctx, [process.env.USER])
+    const isAccess = await checkAccess(ctx, [process.env.USER_ROLE])
     if (!isAccess) return ctx.reply('Access denied');
     const userService = new User();
     const user = await userService.getById(ctx.chat.id);

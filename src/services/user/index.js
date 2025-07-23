@@ -4,11 +4,11 @@ class User extends baseModel {
     User() {
     }
 
-    async getAccountInfo(user) {
+    async getAccountInfo() {
         return `Account info`;
     }
 
-    async getPaymentHistory(user) {
+    async getPaymentHistory() {
         return `Payment history`;
     }
 
@@ -56,9 +56,9 @@ class User extends baseModel {
             nest: true
         });
 
-        if (user && user.isAdmin) return process.env.ADMIN;
-        if (user) return process.env.USER;
-        return process.env.GUEST;
+        if (user && user.isAdmin) return process.env.ADMIN_ROLE;
+        if (user) return process.env.USER_ROLE;
+        return process.env.GUEST_ROLE;
     }
 
     async getById(id) {

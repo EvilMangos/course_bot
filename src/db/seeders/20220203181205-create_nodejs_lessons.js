@@ -1,3 +1,4 @@
+require("../../loadEnv");
 const Course = require('../../services/course/index');
 const BaseModel = require('../baseModel');
 
@@ -32,7 +33,7 @@ const themesList = [
 ];
 
 module.exports = {
-    up: async (queryInterface, Sequelize) => {
+    up: async () => {
         const course = new Course();
         let date = new Date('2022-03-03T21:00:00');
         for (let i = 0; i < 27; i++) {
@@ -46,7 +47,7 @@ module.exports = {
         }
     },
 
-    down: async (queryInterface, Sequelize) => {
+    down: async () => {
         const baseModel = new BaseModel();
         await baseModel.models.lessons.destroy({
             where: {

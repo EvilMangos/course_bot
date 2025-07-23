@@ -1,24 +1,25 @@
+require("../../loadEnv");
 const BaseModel = require('../baseModel');
 
 const admins = {
     Max: {
-        firstName: "Maksym",
-        lastName: "Khamets",
-        email: "jchamets@gmail.com",
+        firstName: "12345",
+        lastName: "12345",
+        email: "12345@gmail.com",
         course: "nodejs",
-        telegramId: 370478309,
+        telegramId: 12345,
     },
     Alex: {
-        firstName: "Alex",
-        lastName: "Kharchenko",
-        email: "alexeyspace3@gmail.com",
+        firstName: "123456",
+        lastName: "123456",
+        email: "123456@gmail.com",
         course: "dataengineering",
-        telegramId: 440762096,
+        telegramId: 123456,
     }
 }
 
 module.exports = {
-    up: async (queryInterface, Sequelize) => {
+    up: async (queryInterface) => {
         const transaction = await queryInterface.sequelize.transaction();
         try {
             const baseModel = new BaseModel();
@@ -43,7 +44,7 @@ module.exports = {
         }
     },
 
-    down: async (queryInterface, Sequelize) => {
+    down: async (queryInterface) => {
         const transaction = await queryInterface.sequelize.transaction();
         try {
             const baseModel = new BaseModel();

@@ -5,8 +5,8 @@ let createUser;
 
 beforeEach(() => {
     createUser = {
-        firstname: 'Tom',
-        lastname: 'Smith',
+        firstName: 'Tom',
+        lastName: 'Smith',
         email: 'tomSmith@gmail.com',
         course: 'nodejs',
         telegramId: Math.round(Math.random() * 1000000),

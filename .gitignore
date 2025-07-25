@@ -9,3 +9,5 @@ package-lock.json
 
 #configs
 configs/environments/.env
+
+data/data.json

@@ -1,4 +1,6 @@
 const baseModel = require('../../db/baseModel');
+const {ROLES} = require("../../constants");
+const {getCourseDisplayName} = require("../../helpers");
 
 class User extends baseModel {
     User() {
@@ -56,9 +58,9 @@ class User extends baseModel {
             nest: true
         });
 
-        if (user && user.isAdmin) return process.env.ADMIN_ROLE;
-        if (user) return process.env.USER_ROLE;
-        return process.env.GUEST_ROLE;
+        if (user && user.isAdmin) return ROLES.ADMIN;
+        if (user) return ROLES.USER;
+        return ROLES.GUEST;
     }
 
     async getById(id) {
@@ -132,7 +134,7 @@ class User extends baseModel {
         return `
 <b>Name:</b> ${user.lastName} ${user.firstName}
 <b>Email:</b> ${user.email}
-<b>Course:</b> ${user.course === process.env.NODE_COURSE ? process.env.NODE_COURSE_FORMAT : process.env.DATA_COURSE_FORMAT}
+<b>Course:</b> ${getCourseDisplayName(user.course)}
 <b>Balance:</b> ${user.balance} UAH
         `
     }

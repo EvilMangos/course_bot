@@ -1,4 +1,5 @@
 const User = require('../services/user/index');
+const {COURSES} = require('../constants');
 
 module.exports = async (ctx) => {
     const userService = new User();
@@ -7,7 +8,9 @@ module.exports = async (ctx) => {
         const pathToProgram = `data/programs/${user.course}.png`;
         return ctx.replyWithPhoto({ source: pathToProgram });
     } else {
-        await ctx.replyWithPhoto({ source: `data/programs/${process.env.NODE_COURSE}.png` }, { caption: process.env.NODE_COURSE_FORMAT });
-        return ctx.replyWithPhoto({ source: `data/programs/${process.env.DATA_COURSE}.png` }, { caption: process.env.DATA_COURSE_FORMAT });
+        for (const course of COURSES) {
+            await ctx.replyWithPhoto({source: `data/programs/${course.ID}.png`}, {caption: course.FORMAT});
+        }
+        return null;
     }
 }

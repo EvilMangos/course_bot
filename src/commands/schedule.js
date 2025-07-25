@@ -1,6 +1,8 @@
 const Course = require('../services/course/index');
 const User = require('../services/user/index');
 const checkAccess = require('../utils/checkAccess');
+const {ROLES} = require("../constants");
+const {getCourseDisplayName} = require("../helpers");
 
 const formatReply = (lessonsList) => {
     let result = `<b>Lessons schedule</b>\n\n`;
@@ -11,7 +13,7 @@ const formatReply = (lessonsList) => {
         result += `
 <b>№</b> ${lessonsList[i].number}
 <b>Theme:</b> ${lessonsList[i].theme}
-<b>Course:</b> ${lessonsList[i].course === process.env.NODE_COURSE ? process.env.NODE_COURSE_FORMAT : process.env.DATA_COURSE_FORMAT}
+<b>Course:</b> ${getCourseDisplayName(lessonsList[i].course)}
 <b>Date:</b> ${lessonsList[i].startedAt.toLocaleString()}
         `;
     }
@@ -19,7 +21,7 @@ const formatReply = (lessonsList) => {
 };
 
 module.exports = async (ctx) => {
-    const isAccess = await checkAccess(ctx, [process.env.USER_ROLE, process.env.ADMIN_ROLE])
+    const isAccess = await checkAccess(ctx, [ROLES.USER, ROLES.ADMIN])
     if (!isAccess) return ctx.reply('Access denied');
     const userService = new User();
     const user = await userService.getById(ctx.chat.id);

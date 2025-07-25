@@ -1,15 +1,42 @@
-const {Scenes, Markup} = require('telegraf');
+const {Scenes} = require('telegraf');
 const BaseModel = require('../db/baseModel');
+const {SCENES} = require('../constants');
+const {createCourseKeyboard} = require("./helpers");
+const {getCourseDisplayName} = require("../helpers");
+
+async function updateUserCourse(telegramId, newCourse) {
+    const baseModel = new BaseModel();
+
+    const user = await baseModel.models.users.findOne({
+        where: {
+            telegramId: telegramId
+        }
+    });
+
+    if (!user) {
+        throw new Error('User not found');
+    }
+
+    await baseModel.models.users.update(
+        {
+            course: newCourse
+        },
+        {
+            where: {
+                telegramId: user.telegramId
+            }
+        }
+    );
+
+    return user;
+}
 
 module.exports = new Scenes.WizardScene(
-    'change-course',
+    SCENES.CHANGE_COURSE,
     async (ctx) => {
         await ctx.reply(
             'Choose a course',
-            Markup.inlineKeyboard([
-                Markup.button.callback(process.env.NODE_COURSE_FORMAT, process.env.NODE_COURSE),
-                Markup.button.callback(process.env.DATA_COURSE_FORMAT, process.env.DATA_COURSE)
-            ]).oneTime()
+            createCourseKeyboard()
         );
         return ctx.wizard.next();
     },
@@ -18,24 +45,20 @@ module.exports = new Scenes.WizardScene(
             await ctx.reply('Changing canceled');
             return ctx.scene.leave();
         }
-        const baseModel = new BaseModel();
-        const user = await baseModel.models.users.findOne({
-            where: {
-                telegramId: ctx.chat.id
-            }
-        });
+        try {
+            const selectedCourse = ctx.callbackQuery.data;
+            const telegramId = ctx.chat.id;
 
-        await baseModel.models.users.update({
-            course: ctx.callbackQuery.data
-        }, {
-            where: {
-                telegramId: user.telegramId
-            }
-        })
+            await updateUserCourse(telegramId, selectedCourse);
 
-        await ctx.reply(`Now your course is - ${
-            ctx.callbackQuery.data === process.env.NODE_COURSE? process.env.NODE_COURSE_FORMAT: process.env.DATA_COURSE_FORMAT 
-        }`);
+            const courseDisplayName = getCourseDisplayName(selectedCourse);
+
+            await ctx.reply(`Now your course is - ${courseDisplayName}`);
+        } catch (error) {
+            console.error('Error changing course:', error);
+            await ctx.reply('An error occurred while changing your course. Please try again.');
+        }
+
         return ctx.scene.leave();
     }
 )

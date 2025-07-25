@@ -1,9 +1,10 @@
 const User = require('../services/user/index')
 const checkAccess = require("../utils/checkAccess");
 const {Markup} = require("telegraf");
+const {ROLES} = require("../constants");
 
 module.exports = async (ctx) => {
-    const isAccess = await checkAccess(ctx, [process.env.USER_ROLE]);
+    const isAccess = await checkAccess(ctx, [ROLES.USER]);
     if (!isAccess) return ctx.reply('Access denied');
     const userService = new User();
     const user = await userService.getById(ctx.chat.id);
